@@ -1,0 +1,110 @@
+.admin{
+    width: 100%;
+    height: 100vh;
+    background-color: #272838;
+}
+
+
+.admin .admin-hero{
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+}
+
+.admin-hero .admin-left{
+    width: 40%;
+    height: 100%;
+    background-color: #D9D9D9
+}
+
+.admin-left form{
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+
+form textarea{
+    resize: none;
+    width: 80%;
+    height: 100px;
+    border: none;
+}
+
+
+ form input{
+    width: 70%;
+    height: 30px;
+    background-color: #EFE2E2;
+    border: none;
+    border-radius: 5px;
+}
+
+ form label{
+    padding-right: 60%;
+}
+
+ form input[type="submit"]{
+    width: 100px;
+    height: 30px;
+    background-color: #2E2F34;
+    color: white;
+    cursor: pointer;
+}
+
+
+.admin-hero .admin-right{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.admin-right h2{
+    color: white;
+    font-weight: 500;
+}
+
+.admin-right .cover{
+    width: 85%;
+    height: 85%;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    padding: 20px;
+    font-weight: 300;
+}
+
+.headers{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+}
+
+.status{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 5px;
+}
+
+.status .employee-status{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 40px;
+    padding:  10px;
+    background-color: #EFE2E2;
+}
+
+.name{
+    width: 10%;
+    text-align: center;
+}
