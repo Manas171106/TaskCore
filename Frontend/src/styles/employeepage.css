@@ -1,0 +1,139 @@
+.employee{
+    width: 100%;
+    height: 100vh;
+    background-color: #272838;
+}
+
+.employee .employee-hero{
+        width: 100%;
+        height: calc(100vh - 80px);
+        display: flex;
+        display: flex;
+        flex-direction: column;
+        padding-top: 50px;
+        gap: 30px;
+    }
+
+.employee .employee-hero .taskstatus{
+    width: 100%;
+    height: 200px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tasks{
+    width: 250px;
+    height: 140px;
+    background-color: #272838;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tasks h3{
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.all{
+    background-color: #C9DB57;
+}
+
+.new{
+    background-color: #879EA3;
+}
+
+.completed{
+    background-color: #879E85;
+}
+
+.failed{
+    background-color: #9B484A;
+}
+
+.task-slider{
+    height: 350px;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    justify-content: start;
+    gap: 3vw;
+    padding-left: 15px;
+}
+
+.task-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.task{
+    position: relative;
+    width: 265px;
+    height: 300px;
+    background-color: #879EA3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    border: none;
+    overflow: hidden;
+}
+
+.top{
+    width: 100%;
+    height: 30px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 5px;
+    color: white;
+}
+
+.top p{
+    width: 80px;
+    height: 20px;
+    background-color: rgb(75, 74, 74);
+    text-align: center;
+    border-radius: 5px;
+    font-size: medium;
+    text-align: center;
+}
+.top h3{
+    font-size: medium;
+}
+
+.task h3{
+    font-size: 1.5vw;
+    color: white;
+}
+.task p{
+    padding: 10px;
+    font-size: medium;
+    color: white;
+}
+.bottom{
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.bottom button{
+    width: 40px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bottom h3{
+    padding-left: 50px;
+    font-weight: lighter;
+    font-size: medium;
+    color: white;
+}
