@@ -1,8 +1,18 @@
 const express = require("express");
-const app = express();
+const dotenv = require("dotenv")
 
-app.get("/", (req, res) => {
-    res.send("This is root");
-});
+dotenv.config()
 
-app.listen(8080);
+const port = process.env.Port || 8080;
+
+const app = express()
+
+const connect = require("./connections/connect.js")
+
+
+connect().then(() => {
+    app.listen(port, () => {
+
+        console.log("server running at ", port)
+    })
+}).catch(err=>{console.log(err)})
