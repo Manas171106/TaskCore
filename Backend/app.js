@@ -1,18 +1,19 @@
-const express = require("express");
-const dotenv = require("dotenv")
+const connect=require("./connections/connect.js")
+const express=require("express");
+const dotenv=require("dotenv")
+const userroute=require("./routes/user.route.js")
 
 dotenv.config()
+connect()
 
-const port = process.env.Port || 8080;
+const port=process.env.Port||8080;
 
-const app = express()
+const app=express()
+app.use(express.json());
 
-const connect = require("./connections/connect.js")
 
+app.use("/user",userroute)
 
-connect().then(() => {
-    app.listen(port, () => {
-
-        console.log("server running at ", port)
-    })
-}).catch(err=>{console.log(err)})
+app.listen(port,()=>{
+    console.log("server running at ",port)
+})
