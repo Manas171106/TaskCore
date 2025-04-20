@@ -1,4 +1,5 @@
 const users = require("../models/User.model.js");
+const Tasks=require("../models/task.model.js")
 const bcrypt = require("bcrypt");
 const jwt=require("jsonwebtoken")
 const dotenv=require("dotenv")
@@ -73,3 +74,25 @@ module.exports.logout = (req, res) => {
   });
   res.status(200).json("Logged out successfully");
 };
+
+module.exports.createtask = async (req,res)=>{
+  try{
+    const {title,assignTo,category,description}=req.body;
+
+    const user = await users.findOne({ fullname: assignTo });
+    console.log(user)
+
+    if(!user){
+      res.json("user not found")
+    }
+
+    const task=new Tasks({
+      title,
+      description,
+      category,
+    })
+  
+  }catch(err){
+    console.log(err)
+  }
+}
