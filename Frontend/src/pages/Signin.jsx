@@ -13,7 +13,7 @@ const Signin = () => {
                 <input type="email" name="email" placeholder='Enter your Email' />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" placeholder='Enter password' />
-                <input type="submit" value="Registere"/>
+                <input type="submit" value="Register"/>
             </form>
             <div className="bottom">
                 <p>Already have an account</p>
