@@ -91,6 +91,13 @@ module.exports.createtask = async (req,res)=>{
       description,
       category,
     })
+
+    await task.save()
+  
+    user.tasks.push(task._id)
+    await user.save()
+  
+    res.status(201).send("task created successfully")
   
   }catch(err){
     console.log(err)
