@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
 .signin {
   width: 100%;
   height: 100vh;
@@ -64,10 +70,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.form .bottom {
+/* .form .bottom {
   width: 100%;
   text-align: center;
   padding: 20px;
   cursor: pointer;
   font-size: 1rem;
-}
+} */
