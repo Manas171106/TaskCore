@@ -120,3 +120,23 @@ module.exports.viewTasks = async (req, res) => {
     res.status(500).json("Internal Server Error");
   }
 };
+
+
+module.exports.updatetask = async (req,res)=>{
+  try {
+    const taskId = req.params.id;
+    const  {status} = req.body;
+    const {fullname,role} = req.user;
+
+    const task = await Tasks.findById(taskId);
+
+    if (!task) {
+      return res.status(404).json("Task not found");
+    }
+
+    res.status(200).json({ message: "Task status updated", task });
+  } catch (err) {
+    console.error("Status update error:", err);
+    res.status(500).json("Internal server error");
+  }
+};
