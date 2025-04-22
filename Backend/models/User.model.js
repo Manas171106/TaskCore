@@ -3,7 +3,14 @@ const mongoose=require("mongoose")
 const userschema=mongoose.Schema({
     fullname:String,
     email:String,
-    password:String
+    password:String,
+    role: { type: String, enum: ['admin', 'employee'], default: 'employee' },
+    tasks:[
+        {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Task"
+        }
+    ]
 })
 
 const user=mongoose.model("user",userschema)
