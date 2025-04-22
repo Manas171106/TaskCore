@@ -81,8 +81,7 @@ module.exports.createtask = async (req,res)=>{
   try{
     const {title,assignTo,category,description}=req.body;
 
-    const user = await users.findOne({ fullname: assignTo });
-    console.log(user)
+    const user = await users.findOne({ fullname: assignTo }).select("-password");
 
     if(!user){
       res.json("user not found")
@@ -93,7 +92,7 @@ module.exports.createtask = async (req,res)=>{
       description,
       category,
     })
-
+  
     await task.save()
   
     user.tasks.push(task._id)
