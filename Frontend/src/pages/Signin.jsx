@@ -11,11 +11,22 @@ const Signin = () => {
   const [password,setpassword]=useState("")
   const [role,setrole]=useState("")
 
+  const handlesubmit=async(e)=>{
+    e.preventDefault()
+    const formdata={fullname,email,password,role}
+
+    const res=await axios.post("http://localhost:3000/user/register",formdata,{
+      withCredentials: true   })
+
+  }
+
   return (
     <div className="signin">
         <div className="form">
             <h3>Register here</h3>
-            <form>
+            <form on onSubmit={(e)=>{
+              handlesubmit(e)
+            }}>
                 <label htmlFor="name">Fullname</label>
                 <input type="text" name="name" value={fullname} onChange={(e)=>{
                   setfullname(e.target.value)
