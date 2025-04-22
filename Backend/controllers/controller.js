@@ -40,7 +40,6 @@ module.exports.signin = async (req, res) => {
   }
 };
 
-
 module.exports.login = async (req,res)=>{
   const {email,password}=req.body;
   let existeduser = await users.findOne( { email } )
@@ -56,7 +55,9 @@ module.exports.login = async (req,res)=>{
     return res.status(401).json("Invalid credentials");
   }
 
-  const token = jwt.sign({ email,fullname:existeduser.fullname}, process.env.JWT_token, { expiresIn: '1h' });
+  const logedinuser=existeduser;
+
+  const token = jwt.sign({ email,fullname:existeduser.fullname,role:existeduser.role}, process.env.JWT_token, { expiresIn: '1h' });
 
   res.cookie('token', token, {
     httpOnly: true,
@@ -64,8 +65,9 @@ module.exports.login = async (req,res)=>{
     maxAge: 3600000
   });
 
-  res.status(200).json("Login successful");
+  res.status(200).json({"message":"user",user:logedinuser});
 }
+
 
 module.exports.logout = (req, res) => {
   res.clearCookie('token', {
@@ -79,8 +81,7 @@ module.exports.createtask = async (req,res)=>{
   try{
     const {title,assignTo,category,description}=req.body;
 
-    const user = await users.findOne({ fullname: assignTo });
-    console.log(user)
+    const user = await users.findOne({ fullname: assignTo }).select("-password");
 
     if(!user){
       res.json("user not found")
@@ -91,7 +92,7 @@ module.exports.createtask = async (req,res)=>{
       description,
       category,
     })
-
+  
     await task.save()
   
     user.tasks.push(task._id)
@@ -103,3 +104,19 @@ module.exports.createtask = async (req,res)=>{
     console.log(err)
   }
 }
+
+
+module.exports.viewTasks = async (req, res) => {
+  try {
+    const user = await users.findOne({ email: req.user.email }).populate("tasks");
+
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+
+    res.status(200).json(user.tasks);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Internal Server Error");
+  }
+};
