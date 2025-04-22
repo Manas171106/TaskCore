@@ -104,3 +104,19 @@ module.exports.createtask = async (req,res)=>{
     console.log(err)
   }
 }
+
+
+module.exports.viewTasks = async (req, res) => {
+  try {
+    const user = await users.findOne({ email: req.user.email }).populate("tasks");
+
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+
+    res.status(200).json(user.tasks);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Internal Server Error");
+  }
+};
