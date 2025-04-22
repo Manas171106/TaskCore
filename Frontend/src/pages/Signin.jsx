@@ -15,9 +15,7 @@ const Signin = () => {
                 <input type="password" name="password" placeholder='Enter password' />
                 <input type="submit" value="Register"/>
             </form>
-            <div className="bottom">
-              
-            </div></div>
+            </div>
     </div>
   )
 }
