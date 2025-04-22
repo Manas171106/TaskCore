@@ -134,6 +134,20 @@ module.exports.updatetask = async (req,res)=>{
       return res.status(404).json("Task not found");
     }
 
+    
+    if (task.assignTo !== fullname && role !== "employee") {
+      return res.status(403).json("You are not authorized to update this task");
+    }
+
+    const validStatuses = ["pending", "in progress", "completed"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json("Invalid status value");
+    }
+
+    task.status = status;
+    await task.save();
+
+
     res.status(200).json({ message: "Task status updated", task });
   } catch (err) {
     console.error("Status update error:", err);
