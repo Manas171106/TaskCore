@@ -47,7 +47,7 @@ const Signin = () => {
                 <input type="submit" value="Registere"/>
             </form>
             <div className="bottom">
-                <p>Already have an account</p>
+              
             </div></div>
     </div>
   )
