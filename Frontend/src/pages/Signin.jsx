@@ -18,6 +18,7 @@ const Signin = () => {
     const res=await axios.post("http://localhost:3000/user/register",formdata,{
       withCredentials: true   })
 
+      alert("user registered successfully")
   }
 
   return (
