@@ -6,40 +6,40 @@ const dotenv=require("dotenv")
 dotenv.config()
 
 
+
 module.exports.signin = async (req, res) => {
-  const { fullname, email, password } = req.body;
+  const { fullname, email, password ,role} = req.body;
 
   try {
-    const user = await users.findOne({ email });
-
-    if (user) {
+    const existingUser = await users.findOne({ email });
+    if (existingUser) {
       return res.status(409).json("User already exists");
     }
 
-    const hashedpassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new users({ fullname, email, password: hashedPassword ,role});
+    await newUser.save();
 
-    const newuser = new users({
-      fullname,
-      email,
-      password: hashedpassword,
-    });
+    const token = jwt.sign(
+      { id: newUser._id, email: newUser.email, fullname: newUser.fullname,role:newUser.role },
+      process.env.JWT_token,
+      { expiresIn: "1d" }
+    );
 
-    const token=jwt.sign({email,fullname},process.env.JWT_token)
-    console.log(token)
     res.cookie('token', token, {
-      httpOnly: true,    
-      secure: true,     
+      httpOnly: true,
+      secure: false,
       sameSite: 'Strict'
     });
 
-    await newuser.save();
-    
+    res.status(201).json({ message: "User created" ,user: newUser});
 
-    res.status(201).json("User created");
   } catch (err) {
+    console.error("Signin error:", err);
     res.status(500).json("Internal Server Error");
   }
 };
+
 
 module.exports.login = async (req,res)=>{
   const {email,password}=req.body;
