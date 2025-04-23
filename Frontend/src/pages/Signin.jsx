@@ -11,6 +11,7 @@ const Signin = () => {
   const [password,setpassword]=useState("")
   const [role,setrole]=useState("")
 
+  
   const handlesubmit=async(e)=>{
     e.preventDefault()
     const formdata={fullname,email,password,role}
@@ -19,13 +20,14 @@ const Signin = () => {
       withCredentials: true   })
 
       alert("user registered successfully")
+      console.log(res.data)
   }
 
   return (
     <div className="signin">
         <div className="form">
             <h3>Register here</h3>
-            <form on onSubmit={(e)=>{
+            <form onSubmit={(e)=>{
               handlesubmit(e)
             }}>
                 <label htmlFor="name">Fullname</label>
@@ -47,7 +49,7 @@ const Signin = () => {
                 <input type="submit" value="Registere"/>
             </form>
             <div className="bottom">
-              
+                <p>Already have an account</p>
             </div></div>
     </div>
   )
