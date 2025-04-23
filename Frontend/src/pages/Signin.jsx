@@ -37,8 +37,19 @@ const Signin = () => {
                   setemail(e.target.value)
                 }}  placeholder='Enter your Email' />
                 <label htmlFor="password">Password</label>
+<<<<<<< HEAD
                 <input type="password" name="password" placeholder='Enter password' />
                 <input type="submit" value="Register"/>
+=======
+                <input type="password" name="password" value={password} onChange={(e)=>{
+                  setpassword(e.target.value)
+                }}  placeholder='Enter password' />
+                <label htmlFor="role">role</label>
+                <input type="text" name="role" value={role} onChange={(e)=>{
+                  setrole(e.target.value)
+                }}  placeholder='Enter role' />
+                <input type="submit" value="Registere"/>
+>>>>>>> 62628c99b9bea1365ad0aa3f0740e05f505ae5d4
             </form>
             </div>
     </div>

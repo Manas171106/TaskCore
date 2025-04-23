@@ -1,6 +1,7 @@
 const express=require("express")
 const controller=require("../controllers/controller.js")
 const authenticate =require("../middelwares/auth.js")
+const allowRoles =require("../middelwares/roles.js")
 
 const router=express.Router()
 
@@ -10,10 +11,12 @@ router.post("/login",controller.login)
 
 router.post("/logout",controller.logout)
 
-router.post("/create",controller.createtask)
+router.post("/create",authenticate,allowRoles("admin"),controller.createtask)
 
-router.get("/profile",authenticate,(req,res)=>{
-    console.log(req.user)           
-})
+router.get("/view",authenticate,allowRoles("employee"),controller.viewTasks)
+
+router.get("/allusers",authenticate,allowRoles("admin"),controller.allemployees)
+
+router.post("/task/:id/update", authenticate,allowRoles("employee"),controller.updatetask)
 
 module.exports=router
