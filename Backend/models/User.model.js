@@ -1,7 +1,10 @@
 const mongoose=require("mongoose")
 
 const userschema=mongoose.Schema({
-    fullname:String,
+    fullname:{
+        type:String,
+        unique: true
+    },
     email:String,
     password:String,
     role: { type: String, enum: ['admin', 'employee'], default: 'employee' },
