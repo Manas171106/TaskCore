@@ -1,7 +1,7 @@
 import "./index.css"
 
 import Signin from './pages/Signin'
-import Lognin from './pages/loginpage'
+import Login from './pages/loginpage'
 import AdminDashboard from "./pages/AdminDashboard"
 import EmployeeDashboard from "./pages/EmployeeDashboard"
 
@@ -12,9 +12,9 @@ function App() {
     <>
 
     <Signin/>
-    <Lognin/>
-    {/* <AdminDashboard/>
-    <EmployeeDashboard/> */}
+    <Login/>
+    <AdminDashboard/>
+    <EmployeeDashboard/>
 
     </>
   )

@@ -1,79 +1,64 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-}
-.signin {
-  width: 100%;
-  height: 100vh;
-  background-color: #272838;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.signin{
+    width: 100%;
+    height: 100vh;
+    background-color: #272838;
+    display: flex;
+    align-items: center;justify-content: center;
 }
 
-.signin .form {
-  padding-top: 20px;
-  width: 30%;
-  height: auto;
-  background-color: #FFFAFA;
-  display: flex;
-  overflow: hidden;
-  border-radius: 30px;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.signin .form{
+    padding-top: 20px;
+    width: 25%;
+    height: 70%;
+    background-color: #FFFAFA;
+    display: flex;
+    overflow: hidden;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
-.form form {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
+.form form{
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 20px;
+    gap: 8px;
 }
 
-.form form input {
-  width: 90%;
-  height: 40px;
-  background-color: #EFE2E2;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  padding: 5px;
+.form form input{
+    width: 80%;
+    height: 30px;
+    background-color: #EFE2E2;
+    border: none;
+    border-radius: 5px;
 }
 
-.form form label {
-  width: 90%;
-  text-align: left;
-  font-size: 1rem;
+.form form label{
+    padding-right: 60%;
 }
 
-.form form input[type="submit"] {
-  width: 120px;
-  height: 40px;
-  background-color: #2E2F34;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
+.form form input[type="submit"]{
+    width: 100px;
+    height: 30px;
+    background-color: #2E2F34;
+    color: white;
+    cursor: pointer;
 }
 
-.form h3 {
-  font-weight: 700;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
+.form h3{
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 
-/* .form .bottom {
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  cursor: pointer;
-  font-size: 1rem;
-} */
+.form .bottom{
+    width: 100%;
+    text-align: end;
+    padding: 20px;
+    cursor: pointer;
+}
