@@ -1,4 +1,9 @@
-.login{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+  }.login{
     width: 100%;
     height: 100vh;
     background-color: #272838;
@@ -45,13 +50,13 @@
     display: flex;
     flex-direction: column;
 }
-
+/* 
 .form-right .bottom{
     width: 100%;
     text-align: end;
     padding: 20px;
     cursor: pointer;
-}
+} */
 
 .form form input{
     width: 80%;

@@ -1,14 +1,12 @@
-const mongoose=require("mongoose")
+const mongoose = require('mongoose');
 
-const taskschema=mongoose.Schema({
-    title:String,
-    date:{
-        type:Date
-    },
-    assign:String,
-    category:String,
-    description:String,
-})
+const taskSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  status: { type: String, enum: ['pending', 'in progress', 'completed'], default: 'pending' },
+  assignTo:String,
+  date: { type: Date, default: Date.now },
+  category:String
+});
 
-const task=mongoose.model("task",taskschema)
-module.exports=task
+module.exports = mongoose.model('Task', taskSchema);

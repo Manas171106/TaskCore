@@ -20,8 +20,7 @@ const Lognin = () => {
                 <input type="password" name="password" placeholder='Enter password' />
                 <input type="submit" value="Login"/>
             </form>
-            <div className="bottom">
-            <p>Don't have an account?</p></div>
+            
             </div>
         </div>
     </div>
