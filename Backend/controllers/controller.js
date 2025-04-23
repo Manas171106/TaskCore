@@ -69,7 +69,6 @@ module.exports.login = async (req,res)=>{
   res.status(200).json({"message":"user",user:logedinuser});
 }
 
-
 module.exports.logout = (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
