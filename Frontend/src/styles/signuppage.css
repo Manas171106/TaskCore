@@ -57,8 +57,13 @@
 }
 
 .form .bottom{
+    position: relative;
     width: 100%;
     text-align: end;
     padding: 20px;
     cursor: pointer;
+}
+
+.bottom p{
+    padding: 0;
 }
