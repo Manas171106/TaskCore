@@ -120,3 +120,37 @@ module.exports.viewTasks = async (req, res) => {
     res.status(500).json("Internal Server Error");
   }
 };
+
+
+module.exports.updatetask = async (req,res)=>{
+  try {
+    const taskId = req.params.id;
+    const  {status} = req.body;
+    const {fullname,role} = req.user;
+
+    const task = await Tasks.findById(taskId);
+
+    if (!task) {
+      return res.status(404).json("Task not found");
+    }
+
+    
+    if (task.assignTo !== fullname && role !== "employee") {
+      return res.status(403).json("You are not authorized to update this task");
+    }
+
+    const validStatuses = ["pending", "in progress", "completed"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json("Invalid status value");
+    }
+
+    task.status = status;
+    await task.save();
+
+
+    res.status(200).json({ message: "Task status updated", task });
+  } catch (err) {
+    console.error("Status update error:", err);
+    res.status(500).json("Internal server error");
+  }
+};
