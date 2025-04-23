@@ -15,6 +15,8 @@ router.post("/create",authenticate,allowRoles("admin"),controller.createtask)
 
 router.get("/view",authenticate,allowRoles("employee"),controller.viewTasks)
 
+router.get("/allusers",authenticate,allowRoles("admin"),controller.allemployees)
+
 router.post("/task/:id/update", authenticate,allowRoles("employee"),controller.updatetask)
 
 module.exports=router

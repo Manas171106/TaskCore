@@ -5,8 +5,6 @@ const jwt=require("jsonwebtoken")
 const dotenv=require("dotenv")
 dotenv.config()
 
-
-
 module.exports.signin = async (req, res) => {
   const { fullname, email, password ,role} = req.body;
 
@@ -40,9 +38,10 @@ module.exports.signin = async (req, res) => {
   }
 };
 
+
 module.exports.login = async (req,res)=>{
   const {email,password}=req.body;
-  let existeduser = await users.findOne( { email } )
+  let existeduser = await users.findOne({ email }).select("+password");
 
   if(!existeduser){
     res.send("user doesnt exist");
@@ -65,9 +64,10 @@ module.exports.login = async (req,res)=>{
     maxAge: 3600000
   });
 
+  existeduser.password = undefined;
+
   res.status(200).json({"message":"user",user:logedinuser});
 }
-
 
 module.exports.logout = (req, res) => {
   res.clearCookie('token', {
@@ -79,7 +79,7 @@ module.exports.logout = (req, res) => {
 
 module.exports.createtask = async (req,res)=>{
   try{
-    const {title,assignTo,category,description}=req.body;
+    const {title,assignTo,category,description,date}=req.body;
 
     const user = await users.findOne({ fullname: assignTo }).select("-password");
 
@@ -91,6 +91,7 @@ module.exports.createtask = async (req,res)=>{
       title,
       description,
       category,
+      date
     })
   
     await task.save()
@@ -105,7 +106,6 @@ module.exports.createtask = async (req,res)=>{
   }
 }
 
-
 module.exports.viewTasks = async (req, res) => {
   try {
     const user = await users.findOne({ email: req.user.email }).populate("tasks");
@@ -114,13 +114,12 @@ module.exports.viewTasks = async (req, res) => {
       return res.status(404).json("User not found");
     }
 
-    res.status(200).json(user.tasks);
+    res.status(200).send(user.tasks);
   } catch (err) {
     console.error(err);
     res.status(500).json("Internal Server Error");
   }
 };
-
 
 module.exports.updatetask = async (req,res)=>{
   try {
@@ -134,12 +133,11 @@ module.exports.updatetask = async (req,res)=>{
       return res.status(404).json("Task not found");
     }
 
-    
     if (task.assignTo !== fullname && role !== "employee") {
       return res.status(403).json("You are not authorized to update this task");
     }
 
-    const validStatuses = ["pending", "in progress", "completed"];
+    const validStatuses = ["pending", "in progress", "failed","completed"];
     if (!validStatuses.includes(status)) {
       return res.status(400).json("Invalid status value");
     }
@@ -147,10 +145,10 @@ module.exports.updatetask = async (req,res)=>{
     task.status = status;
     await task.save();
 
-
     res.status(200).json({ message: "Task status updated", task });
   } catch (err) {
     console.error("Status update error:", err);
     res.status(500).json("Internal server error");
   }
 };
+
