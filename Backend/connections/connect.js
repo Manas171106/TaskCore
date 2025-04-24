@@ -1,7 +1,12 @@
 const mongoose=require("mongoose")
+const dotenv=require("dotenv")
 
-const connect=async ()=>{
-    mongoose.connect("mongodb://127.0.0.1:27017/TaaskCore").then(
+dotenv.config()
+mongo_uri=process.env.MONGO_URI
+
+
+const connect=()=>{
+    mongoose.connect(mongo_uri).then(
         console.log("database connected")
     )
 }
