@@ -9,7 +9,7 @@ const Headers = () => {
   
   const logout=async(e)=>{
     localStorage.setItem("user","")
-    await axios.post("http://localhost:3000/user/logout",{
+    await axios.post("/user/logout",{
       withCredentials: true   })
       navigate("/")
     }

@@ -16,12 +16,12 @@ const AdminDashboard = () => {
     e.preventDefault()
     let formdata = {title,description,date,assignTo,category}
     try{
-      await axios.post("http://localhost:3000/user/create",formdata,{
+      await axios.post("/user/create",formdata,{
         withCredentials: true,
       })
       alert("Task created successfully!");
 
-      const res = await axios.get("http://localhost:3000/user/allusers", {
+      const res = await axios.get("/user/allusers", {
         withCredentials: true,
       });
       setusers(res.data);
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:3000/user/allusers", {
+        const res = await axios.get("/user/allusers", {
           withCredentials: true,
         });
         setusers(res.data);
