@@ -152,3 +152,14 @@ module.exports.updatetask = async (req,res)=>{
   }
 };
 
+module.exports.allemployees= async(req,res)=>{
+  try{
+    const allusers = await users.find({ role: { $ne: "admin" } }).select("-password")
+    console.log(allusers)
+
+    res.send(allusers)
+  }catch(err){
+    console.log(err)
+    res.status(500).json("Internal server error");
+  }
+}

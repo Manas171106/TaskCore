@@ -6,7 +6,7 @@ const userschema=mongoose.Schema({
         unique: true
     },
     email:String,
-    password: { type: String },
+    password:String,
     role: { type: String, enum: ['admin', 'employee'], default: 'employee' },
     tasks:[
         {
