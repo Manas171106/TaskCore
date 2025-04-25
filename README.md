@@ -35,5 +35,3 @@ TaskCore is a full-stack task management application built using the MERN stack 
 
 ---
 
-## 📁 Project Structure
-
