@@ -22,7 +22,7 @@ const Login = () => {
       });
 
       if (res.data.user) {
-        alert("User logged in successfully");
+        alert("User Logged in Successfully");
         localStorage.setItem("user", JSON.stringify(res.data.user));
 
         const userrole = res.data.user.role;
