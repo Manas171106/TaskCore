@@ -83,7 +83,7 @@ const EmployeeDashboard = () => {
         <div className="taskstatus">
           <div className="tasks new">
             <em>
-              <h3>new</h3>
+              <h3>New</h3>
               <h3>{active}</h3>
             </em>
           </div>
