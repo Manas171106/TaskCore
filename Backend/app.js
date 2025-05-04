@@ -27,7 +27,3 @@ app.listen(port,()=>{
     console.log("server running at ",port)
 })
 
-fetch(`${process.env.REACT_APP_API_URL}/user`)
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
