@@ -94,7 +94,7 @@ const Signin = () => {
           />
           {errors.role && <span>{errors.role.message}</span>}
 
-          <input type="submit" value={loading ? "Please wait..." : "Register"} disabled={loading} />
+          <input type="submit" value={loading ? "Please wait..." : "Signin"} disabled={loading} />
         </form>
 
         <div className="bottom">
