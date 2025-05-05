@@ -1,80 +1,56 @@
 import React, { useEffect, useState } from "react";
 import Headers from "../components/Headers";
 import "../styles/employeepage.css";
-import axios from "../api/axios.js";
-
+import axios from "axios";
 
 const EmployeeDashboard = () => {
+  const [tasks, setTasks] = useState([]);
 
-  const update = async(task,status)=>{
-    const Tstatus={status}
-    const taskid=task._id
-    console.log(taskid)
-    const res=await axios.post(`/user/task/${taskid}/update`,Tstatus,{
-            withCredentials: true,
-          })
-          console.log(res.data)
+  const update = async (task, status) => {
+    try {
+      const taskid = task._id;
+      const Tstatus = { status };
 
-    fetchTasks()
-  }
+      console.log(taskid);
 
-  const [tasks,settasks]=useState([])
+      const res = await axios.post(
+        `http://localhost:3000/user/task/${taskid}/update`,
+        Tstatus,
+        { withCredentials: true }
+      );
 
-  
-  
+      console.log(res.data);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  };
+
   const fetchTasks = async () => {
     try {
       const res = await axios.get("/user/view", {
         withCredentials: true,
       });
-      settasks(res.data);
+      setTasks(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Error fetching tasks:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  let active=0,failed=0,complete=0,total=tasks.length;
+  let active = 0,
+    failed = 0,
+    complete = 0,
+    total = tasks.length;
 
-    tasks.forEach((task)=>{
-      if(task.status=="completed"){
-        complete+=1;
-      }else if(task.status=="failed"){
-        failed+=1;
-      }else{
-        active+=1;
-      }
-    })
-
-
-    tasks.map((task)=>{
-      if(task.status=="pending"){
-        return (
-        <div key={task._id} className="task new">
-          <div className="top">
-            <h3>high</h3>
-          </div>
-          <h3>{task.title}</h3>
-          <p>{task.description}</p>
-          <div className="bottom">
-          <button onClick={()=>{
-            update(task,"completed")
-          }}>
-          ✔
-        </button>
-        <button onClick={()=>{
-          update(task,"failed")
-        }}>❌</button>
-        <h3>{new Date(task.date).toLocaleDateString()}</h3>
-          </div>
-        </div>
-      )
-      }
-    })
-
+  tasks.forEach((task) => {
+    if (task.status === "completed") complete++;
+    else if (task.status === "failed") failed++;
+    else active++;
+  });
 
   return (
     <div className="employee">
@@ -108,32 +84,26 @@ const EmployeeDashboard = () => {
         </div>
 
         <div className="task-slider">
-        {
-          tasks.map((task)=>{
-            if(task.status=="pending"){
-              return (
+          {tasks
+            .filter((task) => task.status === "pending")
+            .map((task) => (
               <div key={task._id} className="task new">
                 <div className="top">
-                  <h3>high</h3>
+                  <h3>{task.priority || "high"}</h3>
                 </div>
                 <h3>{task.title}</h3>
                 <p>{task.description}</p>
                 <div className="bottom">
-                <button onClick={()=>{
-                  update(task,"completed")
-                }}>
-                ✔
-              </button>
-              <button onClick={()=>{
-                update(task,"failed")
-              }}>❌</button>
-              <h3>{new Date(task.date).toLocaleDateString()}</h3>
+                  <button onClick={() => update(task, "completed")}>✔</button>
+                  <button onClick={() => update(task, "failed")}>❌</button>
+                  <h3>
+                    {task.date
+                      ? new Date(task.date).toLocaleDateString()
+                      : "No Date"}
+                  </h3>
                 </div>
               </div>
-            )
-            }
-          })
-        }
+            ))}
         </div>
       </div>
     </div>

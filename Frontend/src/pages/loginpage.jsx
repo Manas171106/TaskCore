@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../styles/loginpage.css";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import axios from "../api/axios.js";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post("/user/login", data, {
+      const res = await axios.post("http://localhost:3000/user/login", data, {
         withCredentials: true,
       });
 

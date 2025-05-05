@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../styles/signuppage.css";
-import axios from "../api/axios.js";
+import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -18,7 +18,7 @@ const Signin = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("/user/register", data, {
+      const res = await axios.post("http://localhost:3000/user/register", data, {
         withCredentials: true,
       });
 
