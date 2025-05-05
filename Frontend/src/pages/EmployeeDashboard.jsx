@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Headers from "../components/Headers";
 import "../styles/employeepage.css";
-import axios from "axios";
+import axios from "../api/axios.js";
 
 
 const EmployeeDashboard = () => {
@@ -10,7 +10,7 @@ const EmployeeDashboard = () => {
     const Tstatus={status}
     const taskid=task._id
     console.log(taskid)
-    const res=await axios.post(`http://localhost:3000/user/task/${taskid}/update`,Tstatus,{
+    const res=await axios.post(`/user/task/${taskid}/update`,Tstatus,{
             withCredentials: true,
           })
           console.log(res.data)
@@ -24,7 +24,7 @@ const EmployeeDashboard = () => {
   
   const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/user/view", {
+      const res = await axios.get("/user/view", {
         withCredentials: true,
       });
       settasks(res.data);
@@ -83,7 +83,7 @@ const EmployeeDashboard = () => {
         <div className="taskstatus">
           <div className="tasks new">
             <em>
-              <h3>new</h3>
+              <h3>New</h3>
               <h3>{active}</h3>
             </em>
           </div>

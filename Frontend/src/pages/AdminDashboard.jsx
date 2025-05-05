@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../styles/adminpage.css"
 import Headers from '../components/Headers'
-import axios from "axios"
+import axios from "../api/axios.js";
 
 const AdminDashboard = () => {
 
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:3000/user/allusers", {
+        const res = await axios.get("/user/allusers", {
           withCredentials: true,
         });
         setusers(res.data);

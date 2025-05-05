@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../styles/loginpage.css";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axios from "../api/axios.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,12 +17,12 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/user/login", data, {
+      const res = await axios.post("/user/login", data, {
         withCredentials: true,
       });
 
       if (res.data.user) {
-        alert("User logged in successfully");
+        alert("User Logged in Successfully");
         localStorage.setItem("user", JSON.stringify(res.data.user));
 
         const userrole = res.data.user.role;

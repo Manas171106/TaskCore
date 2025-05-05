@@ -1,6 +1,6 @@
 import React from 'react'
 import "../styles/headers.css"
-import axios from "axios"
+import axios from "../api/axios.js";
 import { useNavigate } from 'react-router-dom'
 
 const Headers = () => {
@@ -9,7 +9,7 @@ const Headers = () => {
   
   const logout=async(e)=>{
     localStorage.setItem("user","")
-    await axios.post("http://localhost:3000/user/logout",{
+    await axios.post("/user/logout",{
       withCredentials: true   })
       navigate("/")
     }
