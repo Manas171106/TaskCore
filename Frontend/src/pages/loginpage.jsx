@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/user/login", data, {
+      const res = await axios.post("/user/login", data, {
         withCredentials: true,
       });
 

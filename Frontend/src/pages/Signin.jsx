@@ -18,7 +18,7 @@ const Signin = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:3000/user/register", data, {
+      const res = await axios.post("/user/register", data, {
         withCredentials: true,
       });
 

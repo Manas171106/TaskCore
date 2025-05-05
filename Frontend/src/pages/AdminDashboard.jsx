@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:3000/user/allusers", {
+        const res = await axios.get("/user/allusers", {
           withCredentials: true,
         });
         setusers(res.data);
