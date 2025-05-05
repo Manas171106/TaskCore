@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Headers from "../components/Headers";
 import "../styles/employeepage.css";
-import axios from "../api/axios";
+import axios from "../api/axios.js";
 
 
 const EmployeeDashboard = () => {

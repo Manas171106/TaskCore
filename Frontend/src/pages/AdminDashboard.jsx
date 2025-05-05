@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../styles/adminpage.css"
 import Headers from '../components/Headers'
-import axios from "../api/axios";
+import axios from "../api/axios.js";
 
 const AdminDashboard = () => {
 

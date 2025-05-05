@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../styles/signuppage.css";
-import axios from "../api/axios";
+import axios from "../api/axios.js";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
