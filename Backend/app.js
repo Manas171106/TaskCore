@@ -13,6 +13,11 @@ app.use(cookieParser())
 dotenv.config()
 connect()
 
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
+
 app.use(cors({
   origin: "https://taskcore-1.onrender.com",
   credentials: true,
